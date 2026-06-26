@@ -1,36 +1,61 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# farid-inawan.dev
 
-## Getting Started
+Personal site of **Farid Inawan**. The landing page is a scroll-driven [three.js](https://threejs.org) particle animation: a rotating globe of 2,048 points that vortex-swirls through two text scenes as you scroll.
 
-First, run the development server:
+🔗 **Live:** https://frdteknikelektro.github.io/farid-inawan.dev/
+
+## How it works
+
+The whole intro is a single `<canvas>` driven by scroll position. Particles never spawn or die — the same 2,048 points are continuously re-targeted between scenes:
+
+1. **Globe** — points placed on a Fibonacci sphere, slowly spinning.
+2. **"Hi! I'm Farid"** — text rasterized to an offscreen canvas, then sampled into point targets.
+3. **"Currently building…"** — second text scene.
+
+Each transition is a **vortex swirl**: points spiral around the Y axis, peaking at the flight midpoint and unwinding to zero at both ends so they land exactly on target. Vertical rank is preserved (top→top, bottom→bottom). Scenes sit one viewport apart and reveal as you scroll, with a 10% static "hold" on each.
+
+Extra touches:
+
+- Pointer / touch acts as a brush that pushes nearby particles around (with a click "shockwave").
+- The camera auto-fits the widest formation, so text never clips on portrait / mobile; particle size compensates for the camera distance.
+
+The core lives in [`app/components/ParticleGlobe.tsx`](app/components/ParticleGlobe.tsx).
+
+## Tech stack
+
+- [Next.js 16](https://nextjs.org) (App Router, static export)
+- [React 19](https://react.dev)
+- [three.js](https://threejs.org)
+- [Tailwind CSS 4](https://tailwindcss.com)
+- TypeScript
+
+## Local development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build   # static export to ./out
+```
 
-## Learn More
+## Deployment
 
-To learn more about Next.js, take a look at the following resources:
+Hosted on **GitHub Pages** from the `gh-pages` branch. To publish the current `main`:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run deploy
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+This builds a static export with the correct base path and pushes `./out` to the `gh-pages` branch.
 
-## Deploy on Vercel
+> Using a custom domain (`farid-inawan.dev`)? Drop `NEXT_PUBLIC_BASE_PATH` from the deploy script (so `basePath` is empty), add a `public/CNAME` file with the domain, and point your DNS at GitHub Pages.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## License
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+[MIT](LICENSE) © Farid Inawan

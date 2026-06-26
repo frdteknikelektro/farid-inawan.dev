@@ -12,9 +12,29 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const siteUrl = "https://frdteknikelektro.github.io/farid-inawan.dev";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "Farid Inawan",
-  description: "Portfolio landing page for Farid Inawan.",
+  description:
+    "Personal site of Farid Inawan — an interactive particle intro that morphs a globe through to the text as you scroll.",
+  authors: [{ name: "Farid Inawan" }],
+  keywords: ["Farid Inawan", "portfolio", "three.js", "particles", "Next.js"],
+  openGraph: {
+    title: "Farid Inawan",
+    description:
+      "Personal site of Farid Inawan — an interactive particle intro built with three.js.",
+    url: siteUrl,
+    siteName: "Farid Inawan",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Farid Inawan",
+    description:
+      "Personal site of Farid Inawan — an interactive particle intro built with three.js.",
+  },
 };
 
 export default function RootLayout({

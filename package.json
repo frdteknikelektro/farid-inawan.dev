@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "deploy": "NEXT_PUBLIC_BASE_PATH=/farid-inawan.dev next build && touch out/.nojekyll && gh-pages -d out -b gh-pages -t true"
   },
   "dependencies": {
     "next": "16.2.9",
@@ -22,6 +23,7 @@
     "@types/three": "^0.185.0",
     "eslint": "^9",
     "eslint-config-next": "16.2.9",
+    "gh-pages": "^6.3.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
