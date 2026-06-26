@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "deploy": "NEXT_PUBLIC_BASE_PATH=/farid-inawan.dev next build && touch out/.nojekyll && gh-pages -d out -b gh-pages -t true"
+    "deploy": "NEXT_PUBLIC_BASE_PATH=/farid-inawan.dev next build && touch out/.nojekyll && gh-pages -d out -b gh-pages --dotfiles"
   },
   "dependencies": {
     "next": "16.2.9",
